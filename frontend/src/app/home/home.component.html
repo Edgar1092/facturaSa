@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="row">
+        <div class="col-md-12">
+          <h3><b>Bienvenido(a), {{nombreApellido}}</b></h3>
+        </div>
+          <div class="col-md-4">
+            <div class="card-counter success">
+              <i class="fa fa-money"></i>
+              
+              <span class="count-numbers">$ {{(administrador!= 1 ? saldo : corporacion) | number}}</span>
+              <span class="count-name">{{ administrador!= 1?'Saldo':'Corporacion'}}</span>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card-counter danger">
+              <i class="fa fa-user-o"></i>
+  
+              <span class="count-numbers" >{{contadorReferidos }}</span>
+            
+              <span class="count-name">{{ administrador!= 1?'Referidos':'Usuarios'}}</span>
+            </div>
+          </div>
+  
+          <div class="col-md-4">
+            <div class="card-counter info">
+              <i class="fa fa-line-chart"></i>
+              <span class="count-numbers">{{administrador!= 1 ? accionesConteo : '$'+intensity}}</span>
+              <span class="count-name">{{ administrador!= 1?'Acciones':'Intensity Fitness'}}</span>
+            </div>
+          </div>
+      </div><br><br>
+
+
+<div class="row" style="margin-top: 5em;">
+
+
+</div>
+
+      <!-- <app-time-per-client></app-time-per-client> -->
+    </div>
+  </div>
+  <!-- <div class="row justify-content-center py-3 my-1">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <app-time-per-user></app-time-per-user>
+    </div>
+  </div> -->
+</div>
