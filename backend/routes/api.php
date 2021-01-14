@@ -35,7 +35,7 @@ Route::post('auth/register', 'UserController@store');
 Route::post('referidos', 'UserController@obtenerReferido');
 Route::post('patrocinador', 'UserController@obtenerPatrocinador');
 
-    /** File routes */
+/** File routes */
 
 Route::group([
     'middleware'        =>  'auth:api'
@@ -44,6 +44,19 @@ Route::group([
     Route::resource('roles','RoleController');
 
 });
+
+//rutas de clientes
+Route::group([
+    'prefix'        => 'cliente',
+], function () {
+    Route::get('all','ClientesController@getAll');
+    Route::post('get','ClientesController@show');
+    Route::post('create','ClientesController@create');
+    Route::post('update','ClientesController@update');
+    Route::post('delete','ClientesController@delete');
+    
+});
+
 
 
 

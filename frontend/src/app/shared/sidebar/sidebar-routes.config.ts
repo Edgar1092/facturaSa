@@ -64,6 +64,37 @@ export const ADMIN_ROUTES: RouteInfo[] = [
           }
         ]
       },
+      {
+        path: '/clientes/',
+        title: 'Clientes',
+        icon: 'ft-user',
+        isExternalLink: false,
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        submenu: [
+          {
+            path: '/admin/clientes/list',
+            title: 'Lista',
+            icon: 'ft-list',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          },
+          {
+            path: '/admin/clientes/add',
+            title: 'Agregar',
+            icon: 'ft-user-plus',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          }
+        ]
+      },
     ]
   },
 

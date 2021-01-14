@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy {
         .onHidden.subscribe(() => window.location.reload());
     });
 
-    this.onesignal.init();
+    // this.onesignal.init();
   }
 
   ngOnDestroy() {
