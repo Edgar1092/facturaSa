@@ -27,7 +27,9 @@ export class ClientesService {
   obtener(params) {
     return this.http.post(`cliente/get`, params);
   }
-
+  // obtenerProductos() {
+  //   return this.http.get(`producto/getTodos`);
+  // }
   add(params) {
     return this.http.post(`cliente/create`, params);
   }

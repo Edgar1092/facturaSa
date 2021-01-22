@@ -66,6 +66,7 @@ Route::group([
     Route::post('create','ProductosController@create');
     Route::post('update','ProductosController@update');
     Route::post('delete','ProductosController@delete');
+    Route::get('getTodos','ProductosController@productosTodos');
     
 });
 

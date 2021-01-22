@@ -157,5 +157,25 @@ class ProductosController extends Controller
             ], 500);
         }
     }
+
+        // obtener productos
+        function productosTodos(Request $request){
+            try{
+    
+                DB::beginTransaction(); // Iniciar transaccion de la base de datos
+                $productos = Producto::get();
+                DB::commit(); // Guardamos la transaccion
+                return response()->json($productos,200);
+            }catch (\Exception $e) {
+                if($e instanceof ValidationException) {
+                    return response()->json($e->errors(),402);
+                }
+                DB::rollback(); // Retrocedemos la transaccion
+                Log::error('Ha ocurrido un error en '.$this->NAME_CONTROLLER.': '.$e->getMessage().', Linea: '.$e->getLine());
+                return response()->json([
+                    'message' => 'Ha ocurrido un error al tratar de guardar los datos.',
+                ], 500);
+            }
+        }
     
 }

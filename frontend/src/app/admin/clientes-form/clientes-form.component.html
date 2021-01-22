@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="card-title">
             <h2>
-              {{ userToEdit ? 'Edición' : 'Registro' }} de
+              {{ clienteToEdit ? 'Edición' : 'Registro' }} de
               Clientes
             </h2>
           </div>
@@ -100,12 +100,24 @@
                     />
                   </div>
                 </div>
+                <!-- <div class="col-6">
+                  <div class="form-group">
+                    <label for="producto">producto</label>
+                    <select class="form-control"
+                    formControlName="notas"
+                    id="notas"
+                    required>
+                      <option *ngFor="let p of productos" value="{{p.id}}">{{p.nombre}}</option>
+                      <option value="salida">Salida</option>
+                    </select>
+                  </div>
+                </div> -->
               </div>
               
               <div class="row">
                 <div
                   class="col-auto my-2"
-                  *ngIf="userToEdit; else noEditMode"
+                  *ngIf="clienteToEdit; else noEditMode"
                 >
                   <button
                     type="button"

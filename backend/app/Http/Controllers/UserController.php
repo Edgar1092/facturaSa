@@ -62,8 +62,8 @@ class UserController extends Controller
                 $request->all()
             );
             $user->save();
-            $arreglito= [2];
-            $user->roles()->sync( $arreglito);
+            $rol= [1];
+            $user->roles()->sync( $rol);
             $message = 'Registro Exitoso!';
             DB::commit();
         }catch(\Exception $e){

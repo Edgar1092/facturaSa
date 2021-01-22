@@ -39,6 +39,10 @@ const routes: Routes = [
     component: ClientesListaComponent
   },
   {
+    path: 'clientes/:id',
+    component: ClientesFormComponent
+  },
+  {
     path: 'productos/add',
     component: ProductosFormComponent
   },
