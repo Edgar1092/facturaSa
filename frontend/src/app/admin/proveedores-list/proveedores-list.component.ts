@@ -1,21 +1,23 @@
+import { ProveedoresService } from './../../shared/services/proveedores.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { ClientesService } from 'app/shared/services/clientes.service';
 import swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
-  selector: 'app-clientes-lista',
-  templateUrl: './clientes-lista.component.html',
-  styleUrls: ['./clientes-lista.component.scss']
+  selector: 'app-proveedores-list',
+  templateUrl: './proveedores-list.component.html',
+  styleUrls: ['./proveedores-list.component.scss']
 })
-export class ClientesListaComponent implements OnInit {
-  clientes$: Observable<any[]>;
+export class ProveedoresListComponent implements OnInit {
+  proveedores$: Observable<any[]>;
   total = 0;
   page=1;
   per_page = 10;
   filterParams
-  constructor(private clientesService: ClientesService, private toast: ToastrService) {
-    this.clientes$ = this.clientesService.clientes$;
+
+  constructor(private ProveedoresService: ProveedoresService, private toast: ToastrService) {
+    this.proveedores$ = this.ProveedoresService.proveedores$;
    }
 
   ngOnInit() {
@@ -28,15 +30,14 @@ export class ClientesListaComponent implements OnInit {
       }
     this.loadInitialData(param);
   }
-
   loadInitialData(params){
-    this.clientesService.get(params);
-    console.log(this.clientes$);
+    this.ProveedoresService.get(params);
+    console.log(this.proveedores$);
   }
 
-  delete(cliente: any) {
+  delete(proveedor: any) {
     const confirm = swal.fire({
-      title: `Borrar el cliente`,
+      title: `Borrar el Producto`,
       text: 'Esta acción no se puede deshacer',
       type: 'question',
       showConfirmButton: true,
@@ -48,8 +49,8 @@ export class ClientesListaComponent implements OnInit {
 
     from(confirm).subscribe(r => {
       if (r['value']) {
-        let data = {id:cliente.id}
-        this.clientesService.delete(data).subscribe(response => {
+        let data = {id:proveedor.id}
+        this.ProveedoresService.delete(data).subscribe(response => {
           if (response) {
             this.toast.success(response['message']);
             let param={per_page:this.per_page,page:1};
@@ -60,23 +61,6 @@ export class ClientesListaComponent implements OnInit {
         });
       }
     });
-  }
-
-  onFilter(filterParams) {
-    console.log(filterParams)
-    this.filterParams = filterParams
-    this.page=1;
-    let param={page:1,per_page:this.per_page,...filterParams};
-    this.loadInitialData(param)
-    
-  }
-  
-  perPage(itemsPerPage,page){
-    this.page = page;
-    this.per_page = itemsPerPage;
-    let param={page:this.page,per_page:this.per_page,...this.filterParams};
-    this.loadInitialData(param);
-
   }
 
 }

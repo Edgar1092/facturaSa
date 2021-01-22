@@ -6,58 +6,23 @@
           <div class="card-title">
             <h2>
               {{ userToEdit ? 'Edición' : 'Registro' }} de
-              Clientes
+              Productos
             </h2>
           </div>
         </div>
         <div class="card-body">
           <div class="card-content">
-            <form [formGroup]="formCliente">
+            <form [formGroup]="formProducto">
               <div class="form-row align-items-end">
+
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="email">Correo</label>
-                    <input
-                      type="mail"
-                      class="form-control"
-                      formControlName="email"
-                      id="email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="first_name">Nombre</label>
+                    <label for="codigo">Codigo</label>
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="first_name"
-                      id="first_name"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="razon_social">Razón Social</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="razon_social"
-                      id="razon_social"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="rif">Rif</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      formControlName="rif"
-                      id="rif"
+                      formControlName="codigo"
+                      id="codigo"
                       required
                     />
                   </div>
@@ -65,12 +30,12 @@
 
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="direccion">Direccion</label>
+                    <label for="codigo_proveedor">Codigo Proveedor</label>
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="direccion"
-                      id="direccion"
+                      formControlName="codigo_proveedor"
+                      id="codigo_proveedor"
                       required
                     />
                   </div>
@@ -78,28 +43,83 @@
 
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="telefono">Telefono</label>
+                    <label for="nombre">Nombre</label>
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="telefono"
-                      id="telefono"
+                      formControlName="nombre"
+                      id="nombre"
                       required
                     />
                   </div>
                 </div>
+
                 <div class="col-6">
                   <div class="form-group">
-                    <label for="notas">Notas</label>
+                    <label for="costo">Costo</label>
                     <input
                       type="text"
                       class="form-control"
-                      formControlName="notas"
-                      id="notas"
+                      formControlName="costo"
+                      id="costo"
                       required
                     />
                   </div>
                 </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="precio1">Precio 1</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="precio1"
+                      id="precio1"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="precio2">Precio 2</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="precio2"
+                      id="precio2"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="precio3">Precio 3</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="precio3"
+                      id="precio3"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="departamento">Departamento</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="departamento"
+                      id="departamento"
+                      required
+                    />
+                  </div>
+                </div>
+
+
               </div>
               
               <div class="row">
@@ -110,7 +130,7 @@
                   <button
                     type="button"
                     class="btn btn-raised btn-primary"
-                    [disabled]="formCliente.invalid"
+                    [disabled]="formProducto.invalid"
                     (click)="edit()"
                   >
                     Editar
@@ -121,7 +141,7 @@
                     <button
                       type="button"
                       class="btn btn-raised btn-primary"
-                      [disabled]="formCliente.invalid"
+                      [disabled]="formProducto.invalid"
                       (click)="add()"
                     >
                       Guardar
@@ -133,8 +153,8 @@
                   <button
                     type="button"
                     class="btn btn-raised btn-warning"
-                    [disabled]="!formCliente.dirty"
-                    (click)="formCliente.reset()"
+                    [disabled]="!formProducto.dirty"
+                    (click)="formProducto.reset()"
                   >
                     Limpiar
                   </button>

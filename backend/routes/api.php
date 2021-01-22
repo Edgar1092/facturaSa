@@ -57,6 +57,29 @@ Route::group([
     
 });
 
+//rutas de Productos
+Route::group([
+    'prefix'        => 'producto',
+], function () {
+    Route::get('all','ProductosController@getAll');
+    Route::post('get','ProductosController@show');
+    Route::post('create','ProductosController@create');
+    Route::post('update','ProductosController@update');
+    Route::post('delete','ProductosController@delete');
+    
+});
+
+//rutas de Proveedores
+Route::group([
+    'prefix'        => 'proveedor',
+], function () {
+    Route::get('all','ProveedorController@getAll');
+    Route::post('get','ProveedorController@show');
+    Route::post('create','ProveedorController@create');
+    Route::post('update','ProveedorController@update');
+    Route::post('delete','ProveedorController@delete');
+    
+});
 
 
 

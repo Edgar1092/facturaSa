@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use App\Models\Cliente;
+use App\Models\Producto;
 
 use DB;
 use Auth;
@@ -19,11 +19,12 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-class ClientesController extends Controller
+class ProductosController extends Controller
 {
-    private $NAME_CONTROLLER = 'ClientesController';
+
+    private $NAME_CONTROLLER = 'ProductosController';
     
-    // Obtener todos los clientes //
+    // Obtener todos los productos //
     function getAll(Request $request){
         try{
         	$request->validate([
@@ -31,17 +32,17 @@ class ClientesController extends Controller
                 'page'          =>  'nullable|integer'
             ]);  
             
-            $per_page = (!empty($request->per_page)) ? $request->per_page : Cliente::count();
-            //$consulta = Cliente::where('estatus',0);
+            $per_page = (!empty($request->per_page)) ? $request->per_page : Producto::count();
+           // $consulta = Producto::where('estatus',0);
 
             if($request->search!=''){
-                $consulta->where('email',$request->search);
-                $resultado = $consulta-> paginate($per_page);
+                $consulta->where('codigo',$request->search);
+                $resultado= $consulta ->paginate($per_page);
             }else{
-                $resultado = Cliente::paginate($per_page);
+                $resultado= Producto::paginate($per_page);
             }
 
-           // $resultado=$consulta->paginate($per_page);
+          //  $resultado=$consulta->paginate($per_page);
 
             $response = $resultado;  
   
@@ -64,34 +65,36 @@ class ClientesController extends Controller
     //obtener un registro
     public function show(Request $request)
     {
-        $cliente = [];
+        $producto = [];
         try{
-            $cliente = Cliente::find($request->id);
+            $produto = Producto::find($request->id);
 
         }catch(\Exception $e){
             $this->responseCode = 404;
         }
-        return response()->json($cliente,200);
+        return response()->json($producto,200);
     }
 
-    //crear cliente
+    //crear producto
     function create(Request $request){
         try{
 
             DB::beginTransaction(); // Iniciar transaccion de la base de datos
 
-            $cliente = Cliente::create([
-                'email'    => $request->email,
-                'first_name'    => $request->first_name,
-                'razon_social'    => $request->razon_social,
-                'rif'    => $request->rif,
-                'direccion'    => $request->direccion,
-                'telefono'     => $request->telefono,
-                'notas' => $request->notas
+            $producto = Producto::create([
+                'codigo'    => $request->codigo,
+                'codigo_proveedor'    => $request->codigo_proveedor,
+                'nombre'    => $request->nombre,
+                'costo'     => $request->costo,
+                'precio1'     => $request->precio1,
+                'precio2'     => $request->precio2,
+                'precio3'     => $request->precio3,
+                'departamento'     => $request->departamento,
+                
 
             ]);
             DB::commit(); // Guardamos la transaccion
-            return response()->json($cliente,201);
+            return response()->json($producto,201);
         }catch (\Exception $e) {
             if($e instanceof ValidationException) {
                 return response()->json($e->errors(),402);
@@ -109,17 +112,18 @@ class ClientesController extends Controller
         try{
 
             DB::beginTransaction(); // Iniciar transaccion de la base de datos
-            $cliente = Cliente::find($request->id);
-            $cliente->email = $request->email;
-            $cliente->first_name = $request->first_name;
-            $cliente->razon_social = $request->razon_social;
-            $cliente->rif = $request->rif;
-            $cliente->direccion = $request->direccion;
-            $cliente->telefono = $request->telefono;
-            $cliente->notas = $request->notas;
-            $cliente->save();
+            $producto = Producto::find($request->id);
+            $producto->codigo = $request->codigo;
+            $producto->codigo_proveedor = $request->codigo_proveedor;
+            $producto->nombre = $request->nombre;
+            $producto->costo = $request->costo;
+            $producto->precio1 = $request->precio1;
+            $producto->precio2 = $request->precio2;
+            $producto->precio3 = $request->precio3;
+            $producto->departamento = $request->departamento;
+            $producto->save();
             DB::commit(); // Guardamos la transaccion
-            return response()->json($cliente,200);
+            return response()->json($producto,200);
         }catch (\Exception $e) {
             if($e instanceof ValidationException) {
                 return response()->json($e->errors(),402);
@@ -133,13 +137,13 @@ class ClientesController extends Controller
     }
 
 
-    // Eliminar cliente
+    // Eliminar producto
     function delete(Request $request){
         try{
 
             DB::beginTransaction(); // Iniciar transaccion de la base de datos
-            $cliente = Cliente::find($request->id);
-            $cliente->delete();
+            $producto = Producto::find($request->id);
+            $producto->delete();
             DB::commit(); // Guardamos la transaccion
             return response()->json("eliminado",200);
         }catch (\Exception $e) {
@@ -153,4 +157,5 @@ class ClientesController extends Controller
             ], 500);
         }
     }
+    
 }

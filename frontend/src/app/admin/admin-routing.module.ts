@@ -8,6 +8,10 @@ import { ActivaraccionComponent } from './activaraccion/activaraccion.component'
 import { RoleAdminGuard } from 'app/guards/role-admin.guard';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
 import { ClientesFormComponent } from './clientes-form/clientes-form.component';
+import { ProductosFormComponent } from './productos-form/productos-form.component';
+import { ProductosListComponent } from './productos-list/productos-list.component';
+import { ProveedoresFormComponent } from './proveedores-form/proveedores-form.component';
+import { ProveedoresListComponent } from './proveedores-list/proveedores-list.component';
 
 const routes: Routes = [
   {
@@ -33,6 +37,22 @@ const routes: Routes = [
   {
     path: 'clientes/list',
     component: ClientesListaComponent
+  },
+  {
+    path: 'productos/add',
+    component: ProductosFormComponent
+  },
+  {
+    path: 'productos/list',
+    component: ProductosListComponent
+  },
+  {
+    path: 'proveedor/add',
+    component: ProveedoresFormComponent
+  },
+  {
+    path: 'proveedor/list',
+    component: ProveedoresListComponent
   },
 ];
 

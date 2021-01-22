@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use App\Models\Cliente;
+use App\Models\Proveedor;
 
 use DB;
 use Auth;
@@ -19,26 +19,26 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-class ClientesController extends Controller
+class ProveedorController extends Controller
 {
-    private $NAME_CONTROLLER = 'ClientesController';
-    
-    // Obtener todos los clientes //
-    function getAll(Request $request){
+    private $NAME_CONTROLLER = 'ProveedorController';
+
+     // Obtener todos los Proveedores //
+     function getAll(Request $request){
         try{
         	$request->validate([
                 'per_page'      =>  'nullable|integer',
                 'page'          =>  'nullable|integer'
             ]);  
             
-            $per_page = (!empty($request->per_page)) ? $request->per_page : Cliente::count();
-            //$consulta = Cliente::where('estatus',0);
+            $per_page = (!empty($request->per_page)) ? $request->per_page : Proveedor::count();
+          //  $consulta = Proveedor::where('estatus',0);
 
             if($request->search!=''){
                 $consulta->where('email',$request->search);
-                $resultado = $consulta-> paginate($per_page);
+                $resultado=$consulta->paginate($per_page);
             }else{
-                $resultado = Cliente::paginate($per_page);
+                $resultado = Proveedor::paginate($per_page);
             }
 
            // $resultado=$consulta->paginate($per_page);
@@ -61,37 +61,35 @@ class ClientesController extends Controller
         }
     }
 
-    //obtener un registro
-    public function show(Request $request)
-    {
-        $cliente = [];
-        try{
-            $cliente = Cliente::find($request->id);
-
-        }catch(\Exception $e){
-            $this->responseCode = 404;
+        //obtener un registro
+        public function show(Request $request)
+        {
+            $proveedor = [];
+            try{
+                $proveedor = Provedor::find($request->id);
+    
+            }catch(\Exception $e){
+                $this->responseCode = 404;
+            }
+            return response()->json($proveedor,200);
         }
-        return response()->json($cliente,200);
-    }
 
-    //crear cliente
+         //crear Proveedor
     function create(Request $request){
         try{
 
             DB::beginTransaction(); // Iniciar transaccion de la base de datos
 
-            $cliente = Cliente::create([
+            $proveedor = Proveedor::create([
+
+                'nombre'    => $request->nombre,
                 'email'    => $request->email,
-                'first_name'    => $request->first_name,
-                'razon_social'    => $request->razon_social,
-                'rif'    => $request->rif,
                 'direccion'    => $request->direccion,
-                'telefono'     => $request->telefono,
-                'notas' => $request->notas
+                
 
             ]);
             DB::commit(); // Guardamos la transaccion
-            return response()->json($cliente,201);
+            return response()->json($proveedor,201);
         }catch (\Exception $e) {
             if($e instanceof ValidationException) {
                 return response()->json($e->errors(),402);
@@ -104,22 +102,18 @@ class ClientesController extends Controller
         }
     }
 
-    // Modificar cliente
+    // Modificar Proveedor
     function update(Request $request){
         try{
 
             DB::beginTransaction(); // Iniciar transaccion de la base de datos
-            $cliente = Cliente::find($request->id);
-            $cliente->email = $request->email;
-            $cliente->first_name = $request->first_name;
-            $cliente->razon_social = $request->razon_social;
-            $cliente->rif = $request->rif;
-            $cliente->direccion = $request->direccion;
-            $cliente->telefono = $request->telefono;
-            $cliente->notas = $request->notas;
-            $cliente->save();
+            $proveedor = Proveedor::find($request->id);
+            $proveedor->nombre = $request->nombre;
+            $proveedor->email = $request->email;
+            $proveedor->direccion = $request->direccion;
+            $proveedor->save();
             DB::commit(); // Guardamos la transaccion
-            return response()->json($cliente,200);
+            return response()->json($proveedor,200);
         }catch (\Exception $e) {
             if($e instanceof ValidationException) {
                 return response()->json($e->errors(),402);
@@ -132,14 +126,12 @@ class ClientesController extends Controller
         }
     }
 
-
-    // Eliminar cliente
-    function delete(Request $request){
+      // Eliminar Proveedor
+      function delete(Request $request){
         try{
-
             DB::beginTransaction(); // Iniciar transaccion de la base de datos
-            $cliente = Cliente::find($request->id);
-            $cliente->delete();
+            $proveedor = Proveedor::find($request->id);
+            $proveedor->delete();
             DB::commit(); // Guardamos la transaccion
             return response()->json("eliminado",200);
         }catch (\Exception $e) {
@@ -153,4 +145,6 @@ class ClientesController extends Controller
             ], 500);
         }
     }
+
+    
 }

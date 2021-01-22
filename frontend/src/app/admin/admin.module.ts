@@ -13,6 +13,10 @@ import { SolicitudespagoComponent } from './solicitudespago/solicitudespago.comp
 import { ActivaraccionComponent } from './activaraccion/activaraccion.component';
 import { ClientesListaComponent } from './clientes-lista/clientes-lista.component';
 import { ClientesFormComponent } from './clientes-form/clientes-form.component';
+import { ProductosFormComponent } from './productos-form/productos-form.component';
+import { ProductosListComponent } from './productos-list/productos-list.component';
+import { ProveedoresFormComponent } from './proveedores-form/proveedores-form.component';
+import { ProveedoresListComponent } from './proveedores-list/proveedores-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,11 @@ import { ClientesFormComponent } from './clientes-form/clientes-form.component';
     SolicitudespagoComponent,
     ActivaraccionComponent,
     ClientesListaComponent,
-    ClientesFormComponent
+    ClientesFormComponent,
+    ProductosFormComponent,
+    ProductosListComponent,
+    ProveedoresFormComponent,
+    ProveedoresListComponent
   ],
   imports: [
     CommonModule,

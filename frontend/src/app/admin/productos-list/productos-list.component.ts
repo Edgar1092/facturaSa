@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { ClientesService } from 'app/shared/services/clientes.service';
+import { ProductosService } from 'app/shared/services/productos.service';
 import swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
+
 @Component({
-  selector: 'app-clientes-lista',
-  templateUrl: './clientes-lista.component.html',
-  styleUrls: ['./clientes-lista.component.scss']
+  selector: 'app-productos-list',
+  templateUrl: './productos-list.component.html',
+  styleUrls: ['./productos-list.component.scss']
 })
-export class ClientesListaComponent implements OnInit {
-  clientes$: Observable<any[]>;
+export class ProductosListComponent implements OnInit {
+  productos$: Observable<any[]>;
   total = 0;
   page=1;
   per_page = 10;
   filterParams
-  constructor(private clientesService: ClientesService, private toast: ToastrService) {
-    this.clientes$ = this.clientesService.clientes$;
+
+  constructor(private productosService: ProductosService, private toast: ToastrService) {
+    this.productos$ = this.productosService.productos$;
    }
 
   ngOnInit() {
@@ -30,13 +32,13 @@ export class ClientesListaComponent implements OnInit {
   }
 
   loadInitialData(params){
-    this.clientesService.get(params);
-    console.log(this.clientes$);
+    this.productosService.get(params);
+    console.log(this.productos$);
   }
-
-  delete(cliente: any) {
+  
+  delete(producto: any) {
     const confirm = swal.fire({
-      title: `Borrar el cliente`,
+      title: `Borrar el Producto`,
       text: 'Esta acción no se puede deshacer',
       type: 'question',
       showConfirmButton: true,
@@ -48,8 +50,8 @@ export class ClientesListaComponent implements OnInit {
 
     from(confirm).subscribe(r => {
       if (r['value']) {
-        let data = {id:cliente.id}
-        this.clientesService.delete(data).subscribe(response => {
+        let data = {id:producto.id}
+        this.productosService.delete(data).subscribe(response => {
           if (response) {
             this.toast.success(response['message']);
             let param={per_page:this.per_page,page:1};
@@ -70,7 +72,6 @@ export class ClientesListaComponent implements OnInit {
     this.loadInitialData(param)
     
   }
-  
   perPage(itemsPerPage,page){
     this.page = page;
     this.per_page = itemsPerPage;

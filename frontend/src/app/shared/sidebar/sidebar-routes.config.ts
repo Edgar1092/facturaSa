@@ -95,6 +95,68 @@ export const ADMIN_ROUTES: RouteInfo[] = [
           }
         ]
       },
+      {
+        path: '/productos/',
+        title: 'Productos',
+        icon: 'ft-user',
+        isExternalLink: false,
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        submenu: [
+          {
+            path: '/admin/productos/list',
+            title: 'Lista',
+            icon: 'ft-list',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          },
+          {
+            path: '/admin/productos/add',
+            title: 'Agregar',
+            icon: 'ft-user-plus',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          }
+        ]
+      },
+      {
+        path: '/proveedor/',
+        title: 'Proveedores',
+        icon: 'ft-user',
+        isExternalLink: false,
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        submenu: [
+          {
+            path: '/admin/proveedor/list',
+            title: 'Lista',
+            icon: 'ft-list',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          },
+          {
+            path: '/admin/proveedor/add',
+            title: 'Agregar',
+            icon: 'ft-user-plus',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          }
+        ]
+      },
     ]
   },
 

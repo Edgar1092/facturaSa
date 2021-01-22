@@ -29,9 +29,11 @@ export class ClientesFormComponent implements OnInit {
       id: [''],
       email: ['', Validators.required],
       first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
+      razon_social: ['', Validators.required],
+      rif: ['', Validators.required],
+      direccion: ['', Validators.required],
       telefono: ['', Validators.required],
-      sexo: ['marico', Validators.required]
+      notas: ['', Validators.required]
     });
 
   }

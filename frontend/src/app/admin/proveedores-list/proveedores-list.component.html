@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">
-            <h2>Clientes Registrados</h2>
+            <h2>Proveedores Registrados</h2>
           </div>
         </div>
         <div class="card-body">
@@ -18,37 +18,28 @@
               >
                 <thead class="thead-inverse">
                   <tr>
-                    <th>Email</th>
                     <th>Nombre</th>
-                    <th>Razon Social</th>
-                    <th>Rif</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
-                    <th>Notas</th>
-                    
+                    <th>Email</th>
+                    <th>direccion</th>     
                   </tr>
                 </thead>
                 <tbody>
                   <tr
                   *ngFor="
-                  let cliente of (clientes$ | async)['data']
+                  let proveedor of (proveedores$ | async)['data']
                     | paginate
                       : {
                           itemsPerPage: per_page,
                           currentPage: page,
-                          totalItems: (clientes$ | async)['total']
+                          totalItems: (proveedores$ | async)['total']
                         }; 
                       index as i
                 "
                   >
                 
-                    <td scope="row">{{ cliente.email }}</td>
-                    <td>{{ cliente.first_name }}</td>
-                    <td>{{ cliente.razon_social }}</td>
-                    <td>{{ cliente.rif }}</td>
-                    <td>{{ cliente.direccion }}</td>
-                    <td>{{ cliente.telefono }}</td>
-                    <td>{{ cliente.notas}}</td>
+                    <td scope="row">{{ proveedor.nombre }}</td>
+                    <td>{{ proveedor.email }}</td>
+                    <td>{{ proveedor.direccion }}</td>
                     <td>
                       <div class="btn-group">
                         <!-- <button
@@ -64,7 +55,7 @@
                         ngbTooltip="Eliminar"
                           type="button"
                           class="btn btn-danger"
-                          (click)="delete(cliente)"
+                          (click)="delete(proveedor)"
                         >
                           <a class="ft-trash" style="color:white"></a>
                         </button>
