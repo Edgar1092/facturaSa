@@ -16,7 +16,7 @@ export class ProveedoresFormComponent implements OnInit {
   formProveedor: FormGroup;
   page=1;
   per_page=10;
-  userToEdit
+  proveedorToEdit
 
   constructor( 
     private fb: FormBuilder,
@@ -34,6 +34,31 @@ export class ProveedoresFormComponent implements OnInit {
     }
 
   ngOnInit() {
+
+    this.activatedRoute.params
+    .pipe(
+      switchMap(params => {
+        if (params['id']) {
+          let data = {
+            id:params['id']
+          }
+          return this.ProveedoresService.obtener(data);
+        } else {
+          return of(null);
+        }
+      })
+    )
+    .subscribe(proveedor => {
+      if (proveedor) {
+        this.proveedorToEdit = proveedor
+        this.formProveedor.controls['id'].setValue(proveedor['id']);
+        this.formProveedor.controls['nombre'].setValue(proveedor['nombre']);
+        this.formProveedor.controls['email'].setValue(proveedor['email']);
+        this.formProveedor.controls['direccion'].setValue(proveedor['direccion']);
+               
+        console.log("aquui",this.formProveedor.value)
+      }
+    });
   }
 
   add() {
@@ -42,7 +67,26 @@ export class ProveedoresFormComponent implements OnInit {
         console.log(response)
         if (response) {
           this.toast.success("Guardado");
-          // this.router.navigate(['/admin/clientes/list']);
+          this.router.navigate(['/admin/proveedor/list']);
+        } else {
+          this.toast.error("Error");
+        }
+      },(error)=>
+      {
+        console.log(error)
+        this.toast.error("Error");
+      });
+    }
+  }
+
+  
+  edit() {
+    if (this.formProveedor.valid) {
+      this.ProveedoresService.update(this.formProveedor.value).subscribe(response => {
+        console.log(response)
+        if (response) {
+          this.toast.success("Guardado");
+          this.router.navigate(['/admin/proveedor/list']);
         } else {
           this.toast.error("Error");
         }

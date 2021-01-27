@@ -4,7 +4,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title">
-              <h2>Productos Registrados</h2>
+              <h2>Inventario de Productos</h2>
             </div>
           </div>
           <div class="card-body">
@@ -18,46 +18,38 @@
                 >
                   <thead class="thead-inverse">
                     <tr>
-                      <th>Codigo</th>
-                      <th>Codigo Proveedor</th>
-                      <th>Nombre</th>
-                      <th>Costo</th>
-                      <th>Precio 1</th>
-                      <th>Precio 2</th>
-                      <th>Precio 3</th>
-                      <th>Departamento</th>
-                    
+                      <th>Productos</th>
+                      <th>Entrada</th>
+                      <th>Salida</th>    
+                      <th>Disponible</th>     
                     </tr>
                   </thead>
                   <tbody>
                     <tr
                     *ngFor="
-                    let producto of (productos$ | async)['data']
+                    let inventario of (inventario$ | async)['data']
                       | paginate
                         : {
                             itemsPerPage: per_page,
                             currentPage: page,
-                            totalItems: (productos$ | async)['total']
+                            totalItems: (inventario$ | async)['total']
                           }; 
                         index as i
                   "
                     >
                   
-                      <td scope="row">{{ producto.codigo }}</td>
-                      <td>{{ producto.codigo_proveedor }}</td>
-                      <td>{{ producto.nombre }}</td>
-                      <td>{{ producto.costo }}</td>
-                      <td>{{ producto.precio1}}</td>
-                      <td>{{ producto.precio2}}</td>
-                      <td>{{ producto.precio3}}</td>
-                      <td>{{ producto.departamento}}</td>
+                      <td scope="row">{{ inventario.nombre }}</td>
+                      <td>{{ inventario.entrada }}</td>
+                      <td>{{ inventario.salida }}</td>
+                      <td>{{ (inventario.entrada - inventario.salida) }}</td>
+
                       <td>
-                        <div class="btn-group">
+                        <!-- <div class="btn-group">
                           <button
                           ngbTooltip="Editar"
                             type="button"
                             class="btn btn-secondary"
-                            [routerLink]="['/admin/productos/', producto.id]"
+                            [routerLink]="['/admin/inventario/', inventario.id]"
                           >
                             <a class="ft-more-horizontal" text-info></a>
                           </button>
@@ -66,11 +58,11 @@
                           ngbTooltip="Eliminar"
                             type="button"
                             class="btn btn-danger"
-                            (click)="delete(producto)"
+                            (click)="delete(proveedor)"
                           >
                             <a class="ft-trash" style="color:white"></a>
                           </button>
-                        </div>
+                        </div> -->
                       </td>
                     </tr>
                   </tbody>

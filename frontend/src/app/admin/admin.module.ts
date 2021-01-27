@@ -17,6 +17,8 @@ import { ProductosFormComponent } from './productos-form/productos-form.componen
 import { ProductosListComponent } from './productos-list/productos-list.component';
 import { ProveedoresFormComponent } from './proveedores-form/proveedores-form.component';
 import { ProveedoresListComponent } from './proveedores-list/proveedores-list.component';
+import { InventarioFormComponent } from './inventario-form/inventario-form.component';
+import { InventarioListComponent } from './inventario-list/inventario-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ProveedoresListComponent } from './proveedores-list/proveedores-list.co
     ProductosFormComponent,
     ProductosListComponent,
     ProveedoresFormComponent,
-    ProveedoresListComponent
+    ProveedoresListComponent,
+    InventarioFormComponent,
+    InventarioListComponent
   ],
   imports: [
     CommonModule,

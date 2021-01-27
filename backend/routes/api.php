@@ -81,6 +81,18 @@ Route::group([
     Route::post('delete','ProveedorController@delete');
     
 });
+// Rutas inventario
+Route::group([
+    'prefix'        => 'inventario',
+], function () {
+    Route::get('all','InventarioController@getAll');
+    Route::post('get','InventarioController@show');
+    Route::post('create','InventarioController@create');
+    Route::post('update','InventarioController@update');
+    Route::post('delete','InventarioController@delete');
+    Route::post('tipo','InventarioController@crear');
+    
+});
 
 
 

@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="card-title">
             <h2>
-              {{ userToEdit ? 'Edición' : 'Registro' }} de
+              {{ proveedorToEdit ? 'Edición' : 'Registro' }} de
               Proveedores
             </h2>
           </div>
@@ -58,7 +58,7 @@
               <div class="row">
                 <div
                   class="col-auto my-2"
-                  *ngIf="userToEdit; else noEditMode"
+                  *ngIf="proveedorToEdit; else noEditMode"
                 >
                   <button
                     type="button"

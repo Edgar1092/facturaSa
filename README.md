@@ -12,8 +12,8 @@ php artisan make:model Models/Cliente -m
 ejecutar migracion
 php artisan migrate
 
-Refrescar migracion si se modifico las tablas
-php artisan migrate:refresh
+Refrescar migracion y seeder si se modifico las tablas
+php artisan migrate:fresh --seed
 
 crear controlador
 php artisan make:controller ClientesController

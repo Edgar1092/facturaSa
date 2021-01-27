@@ -157,6 +157,37 @@ export const ADMIN_ROUTES: RouteInfo[] = [
           }
         ]
       },
+      {
+        path: '/inventario/',
+        title: 'Inventario',
+        icon: 'ft-user',
+        isExternalLink: false,
+        class: 'has-sub',
+        badge: '',
+        badgeClass: '',
+        submenu: [
+          {
+            path: '/admin/inventario/list',
+            title: 'Lista',
+            icon: 'ft-list',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          },
+          {
+            path: '/admin/inventario/add',
+            title: 'Agregar',
+            icon: 'ft-user-plus',
+            isExternalLink: false,
+            class: '',
+            badge: '',
+            badgeClass: '',
+            submenu: []
+          }
+        ]
+      },
     ]
   },
 

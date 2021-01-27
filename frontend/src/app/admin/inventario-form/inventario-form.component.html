@@ -1,0 +1,108 @@
+  <div class="container-fluid">
+    <div class="row align-items-end">
+      <div class="col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>
+                {{ inventarioToEdit ? 'Edición' : 'Registro' }} de
+                Inventario
+              </h2>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <form [formGroup]="formInventario">
+                <div class="form-row align-items-end">
+  
+                 
+                     <!-- seleeeeeeect PRODUCTO-->
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="productos">Producto</label>
+                    <select class="form-control"
+                    formControlName="producto_id"
+                    id="producto_id"
+                    required>
+                      <option *ngFor="let p of productos" value="{{p.id}}">{{p.nombre}}</option>
+                      </select>
+                  </div>
+                </div>
+
+                  <!-- seleeeeeeect entrada y salida-->
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="tipo">Tipo</label>
+                      <select class="form-control" formControlName="tipo" required>
+                        <option value="entrada" >Entrada</option>
+                        <option value="salida" >Salida</option>
+                    </select>
+                    </div>
+                  </div>
+                   
+                      
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="monto">Monto</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="monto"
+                        id="monto"
+                        required
+                      />
+                    </div>
+                  </div>
+  
+                 
+                </div>
+                
+                <div class="row">
+                  <div
+                    class="col-auto my-2"
+                    *ngIf="inventarioToEdit; else noEditMode"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-raised btn-primary"
+                      [disabled]="formInventario.invalid"
+                      (click)="edit()"
+                    >
+                      Editar
+                    </button>
+                  </div>
+                  <ng-template #noEditMode>
+                    <div class="col-auto my-2">
+                      <button
+                        type="button"
+                        class="btn btn-raised btn-primary"
+                        [disabled]="formInventario.invalid"
+                        (click)="add()"
+                      >
+                        Guardar
+                      </button>
+                    </div>
+                  </ng-template>
+  
+                  <div class="col-auto my-2">
+                    <button
+                      type="button"
+                      class="btn btn-raised btn-warning"
+                      [disabled]="!formInventario.dirty"
+                      (click)="formInventario.reset()"
+                    >
+                      Limpiar
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+

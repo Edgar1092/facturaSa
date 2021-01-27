@@ -68,7 +68,7 @@ export class ClientesFormComponent implements OnInit {
           console.log("aquui",this.formCliente.value)
         }
       });
-      // this.obtenerProductos();
+     
   }
 
   add() {
@@ -107,14 +107,6 @@ export class ClientesFormComponent implements OnInit {
     }
   }
  
-  // obtenerProductos(){
-  //   this.clienteService.obtenerProductos().subscribe((response)=>{
-  //     this.productos = JSON.parse(JSON.stringify(response))
-  //     this.productos = response
-  // console.log(response)
-  //   },(error)=>{
-  //     console.log(error)
-  //   })
-  // }
+  
 
 }

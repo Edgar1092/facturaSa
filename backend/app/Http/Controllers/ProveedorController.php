@@ -66,7 +66,7 @@ class ProveedorController extends Controller
         {
             $proveedor = [];
             try{
-                $proveedor = Provedor::find($request->id);
+                $proveedor = Proveedor::find($request->id);
     
             }catch(\Exception $e){
                 $this->responseCode = 404;

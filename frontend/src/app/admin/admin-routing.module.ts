@@ -12,6 +12,8 @@ import { ProductosFormComponent } from './productos-form/productos-form.componen
 import { ProductosListComponent } from './productos-list/productos-list.component';
 import { ProveedoresFormComponent } from './proveedores-form/proveedores-form.component';
 import { ProveedoresListComponent } from './proveedores-list/proveedores-list.component';
+import { InventarioFormComponent } from './inventario-form/inventario-form.component';
+import { InventarioListComponent } from './inventario-list/inventario-list.component';
 
 const routes: Routes = [
   {
@@ -51,12 +53,32 @@ const routes: Routes = [
     component: ProductosListComponent
   },
   {
+    path: 'productos/:id',
+    component: ProductosFormComponent
+  },
+  {
     path: 'proveedor/add',
     component: ProveedoresFormComponent
   },
   {
     path: 'proveedor/list',
     component: ProveedoresListComponent
+  },
+  {
+    path: 'proveedor/:id',
+    component: ProveedoresFormComponent
+  },
+  {
+    path: 'inventario/add',
+    component: InventarioFormComponent
+  },
+  {
+    path: 'inventario/list',
+    component: InventarioListComponent
+  },
+  {
+    path: 'inventario/:id',
+    component: InventarioFormComponent
   },
 ];
 

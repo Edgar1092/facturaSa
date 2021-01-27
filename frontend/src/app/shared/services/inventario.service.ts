@@ -5,9 +5,9 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class InventarioService {
 
-  clientes$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  inventario$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient) { }
 
@@ -19,25 +19,30 @@ export class ClientesService {
       });
     }
     this.http
-      .get<any[]>(`cliente/all`, { params: parseParams })
-      .subscribe(clientes => {
-        this.clientes$.next(clientes);
+      .get<any[]>(`inventario/all`, { params: parseParams })
+      .subscribe(inventario => {
+        this.inventario$.next(inventario);
       });
   }
+
   obtener(params) {
-    return this.http.post(`cliente/get`, params);
+    return this.http.post(`inventario/get`, params);
   }
   
   add(params) {
-    return this.http.post(`cliente/create`, params);
+    return this.http.post(`inventario/create`, params);
   }
 
   update(params) {
-    return this.http.post(`cliente/update`, params);
+    return this.http.post(`inventario/update`, params);
   }
 
   delete(params) {
-    return this.http.post(`cliente/delete`, params);
+    return this.http.post(`inventario/delete`, params);
+  }
+
+  obtenerProductos() {
+    return this.http.get(`producto/getTodos`);
   }
 
 }
