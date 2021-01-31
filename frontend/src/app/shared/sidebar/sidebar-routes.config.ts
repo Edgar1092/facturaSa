@@ -24,15 +24,15 @@ export const ADMIN_ROUTES: RouteInfo[] = [
     isExternalLink: false,
     submenu: []
   },
-  {
-    path: '/admin/',
-    title: 'Admin',
-    icon: 'ft-settings',
-    isExternalLink: false,
-    class: 'has-sub',
-    badge: '',
-    badgeClass: '',
-    submenu: [
+  // {
+  //   path: '/admin/',
+  //   title: 'Admin',
+  //   icon: 'ft-settings',
+  //   isExternalLink: false,
+  //   class: 'has-sub',
+  //   badge: '',
+  //   badgeClass: '',
+  //   submenu: [
       {
         path: '/users/',
         title: 'Usuarios',
@@ -188,8 +188,8 @@ export const ADMIN_ROUTES: RouteInfo[] = [
           }
         ]
       },
-    ]
-  },
+    // ]
+  // },
 
 ];
 
